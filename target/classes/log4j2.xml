@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+    <!-- Define log file path and name -->
+    <Properties>
+        <Property name="log-path">logs/</Property>
+        <Property name="log-file">application-${date:yyyy-MM-dd}.log</Property>
+    </Properties>
+
+    <!-- Define appenders -->
+    <Appenders>
+        <!-- Console Appender -->
+        <Console name="ConsoleAppender" target="SYSTEM_OUT">
+            <!-- Use concise log message pattern -->
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+        </Console>
+
+        <!-- File Appender -->
+        <File name="FileAppender" fileName="${log-path}${log-file}" immediateFlush="false" append="true">
+            <!-- Use a more detailed log message pattern for file logging -->
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </File>
+    </Appenders>
+
+    <!-- Define loggers -->
+    <Loggers>
+        <!-- Root Logger -->
+        <Root level="debug">
+            <!-- Reference both appenders -->
+            <AppenderRef ref="ConsoleAppender" />
+            <AppenderRef ref="FileAppender" />
+        </Root>
+    </Loggers>
+</Configuration>
